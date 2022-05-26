@@ -30,7 +30,15 @@ Install requirements from `requirements.txt` i.e. librosa and numpy
 cd iter_vocoder
 pip install -r requirements.txt
 ```
-Then, run the following code in a jupyter notebook or a python script
+
+Add the path to your PYTHONPATH
+
+```python
+import sys
+sys.path.append(local_path_to_repo/iter_vocoder)
+```
+
+## Examples
 
 ```python
 import librosa
@@ -56,22 +64,22 @@ complex_spec = librosa.stft(y=audio,
                             window=window,
                             center=center,)
 
-magnitude, phase = librosa.magphase(complex_spec)
+magspec, phase = librosa.magphase(complex_spec)
 
 # To use griffin-lim
 
 # a. Initialize griffin-lim
-vocoder = GriffinLim(n_iter=20,
+gl_vocoder = GriffinLim(n_iter=20,
                      hop_length=hop_length, 
                      win_length=win_length,
                      n_fft=n_fft,
                      window=window,
                      center=center,)
 # b. use the vocode method 
-gen_audio = vocoder.vocode(magnitude)
+gen_audio = gl_vocoder.vocode(magspec)
 
 # c. To give an initial phase to vocoder
-gen_audio = vocoder.vocode(magnitude, init_phase=phase)
+gen_audio = gl_vocoder.vocode(magspec, init_phase=phase)
 
 # To use one or more iterative vocoders together aka hybrid vocoders
 
@@ -96,10 +104,10 @@ stft_args = dict(
 )
 
 hybrid_voc = HybridVocoder(param_dict, stft_args)
-gen_audio = vocoder_hybrid.vocode(magnitude)
+gen_audio = hybrid_voc.vocode(magspec)
 
 # You can also give an initial phase
-gen_audio = vocoder.vocode(magnitude, init_phase=phase)
+gen_audio = hybrid_voc.vocode(magspec, init_phase=phase)
 ```
 
 ## Todo
