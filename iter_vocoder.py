@@ -458,14 +458,14 @@ class HybridVocoder(IterVocoder):
             self,
             vocoder_name,
             lambda: "Vocoder not implemented. \
-            Choose between: griffinlim, fastgl, admm, diffmap, raar",
+            Choose between: gla, fgla, admm, diffmap, raar",
         )
         return vooder_func
 
-    def griffinlim(self, **kwargs):
+    def gla(self, **kwargs):
         return GriffinLim(**kwargs)
 
-    def fastgl(self, **kwargs):
+    def fgla(self, **kwargs):
         return FastGriffinLim(**kwargs)
 
     def admm(self, **kwargs):
