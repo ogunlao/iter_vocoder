@@ -99,6 +99,11 @@ Then, run the following code in a jupyter notebook or a python script
     gen_audio = vocoder.vocode(magnitude, init_phase=phase)
     ```
 
+## Todo
+
+- Add tests
+- Compare implementation with results in paper
+
 ## Contributors
 
 - Sewade Ogun
