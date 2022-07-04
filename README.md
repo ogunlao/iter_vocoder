@@ -35,7 +35,7 @@ Add the path to your PYTHONPATH
 
 ```python
 import sys
-sys.path.append(local_path_to_repo/iter_vocoder)
+sys.path.append([FULL_PATH_OR_DIR]/iter_vocoder)
 ```
 
 ## Examples

@@ -1,3 +1,5 @@
+from abc import ABC, abstractmethod
+
 import librosa
 import numpy as np
 
@@ -29,7 +31,12 @@ class IterVocoder:
         self.pad_mode = pad_mode
         self.random_state = random_state
 
-    def vocode(self, stft, init_phase, return_phase=False):
+    @abstractmethod
+    def vocode(self, stft, init_phase=None, return_phase=False):
+        """Placeholder for the vocoder function.
+        Implement the vocode function for different iterative vocoders.
+        """
+
         pass
 
     def project_onto_magspec(self, magspec, stft):
@@ -65,7 +72,7 @@ class IterVocoder:
         return next_stft
 
     def init_random_state(self, random_state):
-        # To preserve the randomness of the GL algorithm
+        # To preserve the reproducibility of the iterative algorithm
         self.random_state = self.random_state or random_state
         if self.random_state is None:
             self.rng = np.random
@@ -188,7 +195,7 @@ class FastGriffinLim(GriffinLim):
 
         for _ in range(self.n_iter):
             # Store the previous iterate
-            prev_stft = next_stft
+            prev_stft = next_stft.copy()
 
             next_stft[:] = self.project_complex_spec(self.project_onto_magspec(magspec, stft_acc))
 
@@ -447,6 +454,7 @@ class HybridVocoder(IterVocoder):
         super().__init__()
         self.init_random_state(random_state)
         self.vocoders = []
+        # creates a sequence of vocoders to be used
         for vocoder_name in vocoder_dict:
             kwargs = vocoder_dict[vocoder_name]
             vocoder = self.get_vocoder(vocoder_name)(**kwargs, **stft_args)
@@ -502,5 +510,4 @@ class HybridVocoder(IterVocoder):
 
         if return_phase:
             return gen_audio, phase
-
         return gen_audio
