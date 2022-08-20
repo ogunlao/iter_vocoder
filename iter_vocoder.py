@@ -37,7 +37,7 @@ class IterVocoder:
         Implement the vocode function for different iterative vocoders.
         """
 
-        pass
+        raise NotImplementedError
 
     def project_onto_magspec(self, magspec, stft):
         r"""This finds the projection of spectrogram 'complex_spec' on the set of all complex
