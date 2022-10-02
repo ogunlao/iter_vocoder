@@ -40,7 +40,9 @@ sys.path.append([FULL_PATH_OR_DIR]/iter_vocoder/src/vocoder)
 
 ## Examples
 
+```bash
 cd /[FULL_PATH_OR_DIR]/iter_vocoder/src
+```
 
 ```python
 import librosa
