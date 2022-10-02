@@ -16,7 +16,7 @@ Note that the vocoder implementations are for academic purposes and they are not
 - Alternating Direction Method of Multipliers (ADMM)
 - Hybrid algorithms (where any of the above algorithms can be combined)
 
-## How to use
+## How to install
 
 Clone the repository
 
@@ -24,25 +24,27 @@ Clone the repository
 git clone github.com/iter_vocoder
 ```
 
-Install requirements from `requirements.txt` i.e. librosa and numpy
+Then, you can install the package
 
 ```bash
-cd iter_vocoder
-pip install -r requirements.txt
+cd /iter_vocoder
+pip install -e .
 ```
 
 Add the path to your PYTHONPATH
 
 ```python
 import sys
-sys.path.append([FULL_PATH_OR_DIR]/iter_vocoder)
+sys.path.append([FULL_PATH_OR_DIR]/iter_vocoder/src/vocoder)
 ```
 
 ## Examples
 
+cd /[FULL_PATH_OR_DIR]/iter_vocoder/src
+
 ```python
 import librosa
-from iter_vocoder import (GriffinLim, FastGriffinLim, RAAR, 
+from vocoder import (GriffinLim, FastGriffinLim, RAAR, 
                           DiffMap, ADMM, HybridVocoder)
 
 # stft parameters
