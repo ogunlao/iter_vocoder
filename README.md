@@ -21,7 +21,7 @@ Note that the vocoder implementations are for academic purposes and they are not
 Clone the repository
 
 ```bash
-git clone github.com/iter_vocoder
+git clone https://github.com/ogunlao/iter_vocoder.git
 ```
 
 Then, you can install the package
