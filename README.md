@@ -59,8 +59,8 @@ center=True
 sampling_rate=16000
 
 # load the spectrogram e.g extract spectrogram from an audio
-audio, sr = librosa.load("sample_audio.wav", 
-                         sr=sampling_rate)
+audio, sr = librosa.load("[FULL_PATH_OR_DIR]/iter_vocoder/sample_audios/sample_audio.wav", 
+                        sr=sampling_rate)
 complex_spec = librosa.stft(y=audio, 
                             hop_length=hop_length, 
                             win_length=win_length,
